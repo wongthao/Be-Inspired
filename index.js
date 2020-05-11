@@ -53,7 +53,7 @@ function search(){
     $('form').on('submit', function(){
         event.preventDefault();
         let selectedValue = $('#js-searchTerm').val();
-        const baseUrl = 'http://quotes.rest/qod.json?';
+        const baseUrl = 'https://quotes.rest/qod.json?';
         const apiKey = 'GL8OqsFb_W4BLockU7nWhweF';
         const lang = 'en';
         getQuote(selectedValue, baseUrl, apiKey,lang);
