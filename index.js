@@ -2,13 +2,13 @@
 
 function displayResults(responseJson){
     console.log(responseJson);
-    /*$('.chooseCategory').hide();*/
+    
     $('.js-results').empty();
 
     for (let i=0; i< responseJson.contents.quotes.length; i++){
 
-        $('.js-results').append(`<li>${responseJson.contents.quotes[i].quote}
-            <h2>${responseJson.contents.quotes[i].title}</h2></li>`
+        $('.js-results').append(`<li><h2>${responseJson.contents.quotes[i].title}</h2>${responseJson.contents.quotes[i].quote}
+            </li>`
         )};
     
 }    
@@ -31,8 +31,13 @@ function getQuote(selectedValue, baseUrl, apiKey, lang){
     }
     /*Creating Url string*/
     const paramsString = formatParams(params)
-    const url = baseUrl + paramsString + '&api_Key=' + apiKey;
+    const url = baseUrl + paramsString;
     
+    const options = {
+        headers : new Headers({
+            "X-TheySaidSo-Api-Secret": apiKey
+        })
+    }
 
     fetch(url)
     .then(response => response.json())
