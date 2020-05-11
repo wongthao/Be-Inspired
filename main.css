@@ -1,0 +1,13 @@
+body{
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+    
+}
+
+li{
+    display: inline-block;
+    padding-left: 25px;
+}
