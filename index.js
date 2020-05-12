@@ -39,12 +39,59 @@ function getQuote(selectedValue, baseUrl, apiKey, lang){
         })
     }
 
-    fetch(url)
+    fetch(url, options)
     .then(response => response.json())
     .then(responseJson =>displayResults(responseJson))
-    .catch (error => alert(" Search Term Must be one of the Category"));
+    .catch (error => alert("Please Try Again Later"));
 
 }
+
+
+
+function displayPictures(responseJson){
+    console.log(responseJson);
+    $('.photoResults').empty();
+
+    for(let i=0; i< responseJson.photos.length; i++){
+  
+    $('.photoResults').append(
+      `<img src="${responseJson.photos[i].src.original}" class= "result-img">`
+    )}
+  }
+  
+  
+  function formatParams2(params2){
+      const queryItems = Object.keys(params2).map(key => `${[encodeURIComponent(key)]}=${encodeURIComponent(params2[key])}`);
+      return queryItems.join('&');
+  }
+  
+  
+  
+  function getPicture(selectedValue, baseUrl2, apiKey2, selectedNum, numPerPage){
+    /* creating an obejct array to set upparameters*/
+    const params2 = {
+        query: selectedValue,
+        per_page: numPerPage,
+        page: selectedNum,
+    }
+  
+  
+  /*create URL string*/
+    const paramsString2 = formatParams2(params2)
+    const url2 = baseUrl2 + paramsString2;
+  
+    const options = {
+      headers : new Headers({
+          "Authorization": apiKey2
+      })
+    }
+  
+  fetch(url2, options)
+  .then(response => response.json())
+  .then(responseJson => displayPictures(responseJson))
+  .catch (errpr =>alert("Picture not available"));
+  
+  }
 
 
 
@@ -52,19 +99,49 @@ function getQuote(selectedValue, baseUrl, apiKey, lang){
 function search(){
     $('form').on('submit', function(){
         event.preventDefault();
-        let selectedValue = $('#js-searchTerm').val();
+        let selectedValue = $('#searchTerm').val();
+        if(!selectedValue){
+            alert("Choose an Category");
+            return;
+          }
         const baseUrl = 'https://quotes.rest/qod.json?';
         const apiKey = 'GL8OqsFb_W4BLockU7nWhweF';
         const lang = 'en';
         getQuote(selectedValue, baseUrl, apiKey,lang);
+        let selectedNum = $('#pageNum').val();
+        const baseUrl2 = 'https://api.pexels.com/v1/search?';
+        const apiKey2 = '563492ad6f917000010000012a39f7ec0d58487eace9a38de756b544';
+        const numPerPage ='1';
+        getPicture(selectedValue, baseUrl2, apiKey2,selectedNum,numPerPage);
+        $('.chooseCategory').hide("slow","linear");
+        $('.results').show("slow","linear");
+        $('.photoResults').show();
+        $('.js-button').append( `<button type="backButton" class="backButton">Back</button>`)
+
     })
 
+}
+
+
+function restart(){
+    $('.js-button').on('click', '.backButton', function(event){
+        event.preventDefault();
+        
+        $('.results').hide("slow","linear");
+        $('.photoResults').hide();
+        $('button').remove()
+        $('.chooseCategory').show();
+        
+        
+    })
 }
 
 
 $(function(){
     console.log("App is working")
     search();
+    restart();
+    
 
 
 

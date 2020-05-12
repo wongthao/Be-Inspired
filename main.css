@@ -11,3 +11,8 @@ li{
     display: inline-block;
     padding-left: 25px;
 }
+
+img{
+    width:50%;
+    height:50%;
+}

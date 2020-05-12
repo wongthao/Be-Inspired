@@ -23,15 +23,24 @@
             </ul>
             <form> 
                 <label for="searchTerm">Search one Category To Generate Quote of the Day</label>
-                <input type = "text" name= "searchTerm" id= "js-searchTerm" value="inspire">
+                <input type = "text" name= "searchTerm" id= "searchTerm" value="inspire"><br>
+                
+
+                <label for="pageNum"> Select between 1-200 to get a Random Picture related to category</label>
+                <input type = "number" name ="pageNum" id="pageNum" min ="1" max="200" value= "3"><br>
                 <input type ="submit" value="Search">
+
             </form>
 
         </section>
 
-        <section class= "results">
+        <div class= "results">
             <ul class= "js-results"></ul>
-        </section>
+        </div>
+
+        <div class ="photoResults">
+        </div>
+        <div class ="js-button"></div>
 
 
 
