@@ -7,7 +7,7 @@ function displayResults(responseJson){
 
     for (let i=0; i< responseJson.contents.quotes.length; i++){
 
-        $('.js-results').append(`<li><h2>${responseJson.contents.quotes[i].title}</h2>${responseJson.contents.quotes[i].quote}
+        $('.js-results').append(`<li><h2>${responseJson.contents.quotes[i].title}</h2><q>${responseJson.contents.quotes[i].quote}</q>
             </li>`
         )};
     
@@ -55,7 +55,7 @@ function displayPictures(responseJson){
     for(let i=0; i< responseJson.photos.length; i++){
   
     $('.photoResults').append(
-      `<img src="${responseJson.photos[i].src.original}" class= "result-img">`
+      `<img src="${responseJson.photos[i].src.large2x}" class= "result-img">`
     )}
   }
   
@@ -89,7 +89,7 @@ function displayPictures(responseJson){
   fetch(url2, options)
   .then(response => response.json())
   .then(responseJson => displayPictures(responseJson))
-  .catch (errpr =>alert("Picture not available"));
+  .catch (error =>alert("Picture not available"));
   
   }
 
