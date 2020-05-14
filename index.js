@@ -55,7 +55,7 @@ function displayPictures(responseJson){
     for(let i=0; i< responseJson.photos.length; i++){
   
     $('.photoResults').append(
-      `<img src="${responseJson.photos[i].src.large2x}" class= "result-img">`
+      `<img src="${responseJson.photos[i].src.large2x}" class="result-img" alt ="randomImg">`
     )}
   }
   
@@ -126,7 +126,6 @@ function search(){
 function restart(){
     $('.js-button').on('click', '.backButton', function(event){
         event.preventDefault();
-        
         $('.results').hide("slow","linear");
         $('.photoResults').hide();
         $('button').remove()
@@ -142,9 +141,6 @@ $(function(){
     search();
     restart();
     
-
-
-
 })
 
 
