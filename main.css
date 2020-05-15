@@ -6,19 +6,16 @@
 body{
     text-align: center;
     color: white;
-    background-color:  #2d545e;
-    backdrop-filter:blur(50px);
-    
+    background-color: #2d545e;
 }
 
 main{
-    background-image: url("pictures/newCamera.jpg");
+    background-image: url("pictures/camera.jpg");
     background-repeat: no-repeat;
     background-position: center ;
     background-size:cover;
-    
+    min-height: 100vh;
     height:100%
-    
 }
 
 ul{
@@ -61,12 +58,13 @@ h2{
 }
 
 .category > li {
-    font-weight: bold;
+    font-weight: 900;
     position: relative;
     top:28px;
     right: 30px;
     font-size: 20px;
     color: #161748; 
+    font-family:'Merriweather Sans', sans-serif;
 }
 
 form{
@@ -90,7 +88,6 @@ label{
     margin-top: 100px;
 }
 
-
 .backButton{
     margin-top: 10px;
     font-weight: bold;
@@ -99,7 +96,6 @@ label{
     background: -webkit-linear-gradient(to right, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #061700, #f2f3f7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: 5px;
-    font-size: 16px;
     padding: 5px 20px;
     margin-bottom: 10px;
 
@@ -151,6 +147,12 @@ input[type=submit]{
 }
 
 @media screen and (min-width: 880px) {
+    h1{
+        font-size: 24px;
+    }
+    span{
+        font-size: 70px;
+    }
 
     h2{
         font-size: 35px;
@@ -159,7 +161,6 @@ input[type=submit]{
 
     .category > li {
         font-size: 30px;
-        
     }
 
     form{
@@ -167,12 +168,10 @@ input[type=submit]{
     }
     label{
         font-size: 25px;
-        
     }
 
     .js-results >li>h2{
         font-size: 40px;
-           
     }
 
     .js-results >li>q{
@@ -186,7 +185,6 @@ input[type=submit]{
     input[type=submit]{
         padding: 10px 20px;
     }
-
 
 }
 
@@ -202,6 +200,7 @@ input[type=submit]{
     h2{     
         margin-top: 30px;
     }
+
 }    
 
 

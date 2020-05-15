@@ -29,7 +29,7 @@ function getQuote(selectedValue, baseUrl, apiKey, lang){
         language: lang,
 
     }
-    /*Creating Url string*/
+    //Creating Url string
     const paramsString = formatParams(params)
     const url = baseUrl + paramsString;
     
@@ -68,7 +68,7 @@ function displayPictures(responseJson){
   
   
   function getPicture(selectedValue, baseUrl2, apiKey2, selectedNum, numPerPage){
-    /* creating an obejct array to set upparameters*/
+    // creating an object array to set up parameters
     const params2 = {
         query: selectedValue,
         per_page: numPerPage,
@@ -76,7 +76,7 @@ function displayPictures(responseJson){
     }
   
   
-  /*create URL string*/
+  //create URL string
     const paramsString2 = formatParams2(params2)
     const url2 = baseUrl2 + paramsString2;
   
@@ -113,7 +113,7 @@ function search(){
         const apiKey2 = '563492ad6f917000010000012a39f7ec0d58487eace9a38de756b544';
         const numPerPage ='1';
         getPicture(selectedValue, baseUrl2, apiKey2,selectedNum,numPerPage);
-        $('.chooseCategory').hide("slow","linear");
+        $('.chooseCategory').hide();
         $('.results').show("slow","linear");
         $('.photoResults').show();
         $('.js-button').append( `<button type="backButton" class="backButton">Back</button>`)
@@ -126,8 +126,8 @@ function search(){
 function restart(){
     $('.js-button').on('click', '.backButton', function(event){
         event.preventDefault();
-        $('.results').hide("slow","linear");
-        $('.photoResults').hide();
+        $('.results').hide();
+        $('.photoResults').empty();
         $('button').remove()
         $('.chooseCategory').show();
         
