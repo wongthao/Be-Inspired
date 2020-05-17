@@ -1,26 +1,19 @@
 
 
 function displayResults(responseJson){
-    console.log(responseJson);
     
     $('.js-results').empty();
-
     for (let i=0; i< responseJson.contents.quotes.length; i++){
 
         $('.js-results').append(`<li><h2>${responseJson.contents.quotes[i].title}</h2><q>${responseJson.contents.quotes[i].quote}</q>
             </li>`
         )};
-    
 }    
-
 
 function formatParams(params){
     const queryItems = Object.keys(params).map(key => `${[encodeURIComponent(key)]}=${encodeURIComponent(params[key])}`);
     return queryItems.join('&');
-
 }
-
-
 
 function getQuote(selectedValue, baseUrl, apiKey, lang){
     /* setting up parameters*/
@@ -30,7 +23,7 @@ function getQuote(selectedValue, baseUrl, apiKey, lang){
 
     }
     //Creating Url string
-    const paramsString = formatParams(params)
+    const paramsString = formatParams(params);
     const url = baseUrl + paramsString;
     
     const options = {
@@ -40,16 +33,21 @@ function getQuote(selectedValue, baseUrl, apiKey, lang){
     }
 
     fetch(url, options)
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }
+        throw new Error(response.statusText);
+        })
     .then(responseJson =>displayResults(responseJson))
-    .catch (error => alert("Please Try Again Later"));
+    .catch(err => { $('.js-error-message2').text(`Try Again Later:${err.message}`);
+});
 
 }
 
 
-
 function displayPictures(responseJson){
-    console.log(responseJson);
+    
     $('.photoResults').empty();
 
     for(let i=0; i< responseJson.photos.length; i++){
@@ -66,6 +64,7 @@ function displayPictures(responseJson){
   }
   
   
+
   
   function getPicture(selectedValue, baseUrl2, apiKey2, selectedNum, numPerPage){
     // creating an object array to set up parameters
@@ -85,11 +84,21 @@ function displayPictures(responseJson){
           "Authorization": apiKey2
       })
     }
-  
+
+
   fetch(url2, options)
-  .then(response => response.json())
+
+  .then(response => {
+    if(response.ok){
+        return response.json();
+    }
+    throw new Error(response.statusText);
+    })
+
   .then(responseJson => displayPictures(responseJson))
-  .catch (error =>alert("Picture not available"));
+
+  .catch(err => {$('.js-error-message').text(`Picture not available:${err.message}`);
+    });
   
   }
 
@@ -116,7 +125,7 @@ function search(){
         $('.chooseCategory').hide();
         $('.results').show("slow","linear");
         $('.photoResults').show();
-        $('.js-button').append( `<button type="backButton" class="backButton">Back</button>`)
+        $('.js-button').append( `<button type="button" class="backButton">Back</button>`)
 
     })
 
@@ -128,7 +137,9 @@ function restart(){
         event.preventDefault();
         $('.results').hide();
         $('.photoResults').empty();
-        $('button').remove()
+        $('button').remove();
+        $('.js-error-message').empty();
+        $('.js-error-message2').empty();
         $('.chooseCategory').show();
         
         
@@ -137,7 +148,6 @@ function restart(){
 
 
 $(function(){
-    console.log("App is working")
     search();
     restart();
     

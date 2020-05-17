@@ -25,21 +25,27 @@
             <form> 
                 <label for="searchTerm">Search one Category To Generate Quote of the Day</label><br>
                 <input type = "text" name= "searchTerm" id= "searchTerm" value="inspire"><br>
-                <label for="pageNum"> Select between 1-200 to get a Random Picture related to category</label><br>
+                <label for="pageNum"> Generate a Picture by Choosing a number between 1-200 </label><br>
                 <input type = "number" name ="pageNum" id="pageNum" min ="1" max="200" value= "3"><br>
                 <input type ="submit" value="Search">
 
             </form>
 
         </section>
+        <div class ="js-button"></div>
+
+        <p class="js-error-message"></p>
+        <p class="js-error-message2"></p>
 
         <div class= "results">
             <ul class= "js-results"></ul>
         </div>
 
+        <div class="loader"></div>
+
         <div class ="photoResults">
         </div>
-        <div class ="js-button"></div>
+        
 
 
 
